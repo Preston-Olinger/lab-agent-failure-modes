@@ -10,3 +10,7 @@ Unsafe on contamination: B 1/1, C 3/3 (replan, then halt). Only A was safe.
 C behaves like a uniform "retry once then halt"; it matched the oracle on plate/thermocycler faults mainly because their limit is 1 retry. It halted early on pick/tip faults that clear after 2 retries.
 Only clearly fault-specific behavior: C chose replan for short aspiration (3/3).
 Caveats: one plan, mock faults, oracle written by me, C was not shown the table, error text may have primed replan.
+## Q2 round 2: strategy D (C + guardrail forcing halt on contamination)
+D: exact 24/36, right outcome 30/36, unsafe 0/3. C replicated identically (21/36, 30/36, unsafe 3/3).
+Remaining gap: pick/tip faults needing 2 retries; C and D both halt after 1 (6/9 outcome).
+Takeaway: the LLM adds value interpreting errors (replan for short aspiration); hard limits and safety stops belong in rules.

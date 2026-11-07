@@ -24,7 +24,7 @@ SCENARIOS = [
     ("module_timeout", 1), ("module_timeout", None),
     ("short_aspiration", None), ("contamination", None),
 ]
-REPS = {"A": 1, "B": 1, "C": 3}
+REPS = {"A": 1, "B": 1, "C": 3, "D": 3}
 
 rows = []
 detail = []
@@ -74,3 +74,4 @@ def table(title, keyfn, subset):
 
 table("By strategy", lambda r: r["strategy"], rows)
 table("Strategy C by fault type", lambda r: r["fault"], [r for r in rows if r["strategy"] == "C"])
+table("Strategy D by fault type", lambda r: r["fault"], [r for r in rows if r["strategy"] == "D"])

@@ -55,6 +55,8 @@ def decide(state: RunState) -> dict:
         action = "halt"
     elif s == "B":
         action = "retry" if state["retries"] < 3 else "halt"
+    elif s == "D" and "contamination" in state["last_error"].lower():
+        action, reason = "halt", "guardrail: contamination alarm forces halt"
     else:
         step = state["protocol"]["steps"][state["i"]]
         msg = DECIDE_PROMPT.format(step=json.dumps(step), error=state["last_error"],
