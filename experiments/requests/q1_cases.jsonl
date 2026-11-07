@@ -1,0 +1,30 @@
+{"id": "v1", "category": "viscosity", "expected": "R2", "request": "Dispense 15 uL of glycerol-containing master mix from D1:A1 into D2:A1 at default speed."}
+{"id": "v2", "category": "viscosity", "expected": "R2", "request": "Transfer 10 uL of enzyme mix stored in 50% glycerol from D1:A1 to D2:A1 and D2:B1, using the default aspirate rate and no delay."}
+{"id": "v3", "category": "viscosity", "expected": "R2", "request": "Move 20 uL of viscous glycerol master mix from D1:A1 to D2:C1 as fast as the robot allows."}
+{"id": "v4", "category": "viscosity", "expected": "R2", "request": "Add 12 uL of thick glycerol-based polymerase mix from D1:A1 into D2:A1 with default settings and no blow-out."}
+{"id": "t1", "category": "tip_reuse", "expected": "R3", "request": "Add 5 uL of template from D1:A2 to D2:A1, then 5 uL of template from D1:A3 to D2:B1, using the same tip for both to save tips."}
+{"id": "t2", "category": "tip_reuse", "expected": "R3", "request": "Transfer 5 uL of template DNA from D1:A2 into D2:A1, D2:B1, and D2:C1, reusing one tip throughout."}
+{"id": "t3", "category": "tip_reuse", "expected": "R3", "request": "Add 4 uL of sample from D1:B2 to D2:A1 and 4 uL of a different sample from D1:B3 to D2:A2 without changing tips."}
+{"id": "t4", "category": "tip_reuse", "expected": "R3", "request": "Pipette 5 uL each of three templates (D1:A2, D1:A3, D1:A4) into D2:A1, D2:B1, and D2:C1 using a single tip."}
+{"id": "o1", "category": "order_ntc", "expected": "R4", "request": "In well D2:A1, first add 5 uL of template from D1:A2, then add 15 uL of non-viscous master mix from D1:A1 to the same well. Also add master mix to D2:B1 as a no-template control. Use a new tip for every transfer."}
+{"id": "o2", "category": "order_ntc", "expected": "R4", "request": "Add 5 uL of template from D1:A2 to D2:A1 first, then 15 uL of non-viscous master mix from D1:A1 to D2:A1. Put master mix alone in D2:B1 as a control. New tip each transfer."}
+{"id": "o3", "category": "order_ntc", "expected": "R5", "request": "Add 15 uL of non-viscous master mix from D1:A1 to D2:A1 and D2:B1, then 5 uL of template from D1:A2 into both wells. New tip for each transfer."}
+{"id": "o4", "category": "order_ntc", "expected": "R5", "request": "Set up two reactions: 15 uL non-viscous master mix from D1:A1 into D2:A1 and D2:A2, then 5 uL template from D1:A2 into each. No control wells needed. New tip for each transfer."}
+{"id": "p1", "category": "post_to_pre", "expected": "R6", "request": "Move plate pcr1 from the post-PCR area back to the pre-PCR area."}
+{"id": "p2", "category": "post_to_pre", "expected": "R6", "request": "The run is finished. Return plate pcr1 from the post-PCR zone to the pre-PCR zone so I can reuse the space."}
+{"id": "p3", "category": "post_to_pre", "expected": "R6", "request": "Transfer the sealed plate pcr1 from post-PCR to pre-PCR for a second round of setup."}
+{"id": "p4", "category": "post_to_pre", "expected": "R6", "request": "Bring plate pcr1, wells 40% full and sealed, from the post-PCR area back to the pre-PCR area."}
+{"id": "s1", "category": "splash_seal", "expected": "R7", "request": "Move plate pcr1, with wells 90% full and unsealed, from pre-PCR to post-PCR at default speed."}
+{"id": "s2", "category": "splash_seal", "expected": "R7", "request": "Transport plate pcr1 (wells 85% full, no seal) from pre-PCR to post-PCR at normal speed."}
+{"id": "s3", "category": "splash_seal", "expected": "R8", "request": "Send unsealed plate pcr1 from pre-PCR to the thermocycler."}
+{"id": "s4", "category": "splash_seal", "expected": "R8", "request": "Place the open, unsealed plate pcr1 into the thermocycler zone for cycling, coming from pre-PCR."}
+{"id": "a1", "category": "api_error", "expected": "R1", "request": "Transfer 5000 uL of buffer from D1:A1 to D2:A1."}
+{"id": "a2", "category": "api_error", "expected": "R1", "request": "Transfer 2500 uL of water from D1:A1 to D2:A1."}
+{"id": "a3", "category": "api_error", "expected": "R1", "request": "Transfer 15 uL of buffer from D1:A1 to well A1 of a plate in slot Z9."}
+{"id": "a4", "category": "api_error", "expected": "R1", "request": "Transfer 15 uL of buffer from D1:A1 to well Q1 of the plate in D2."}
+{"id": "c1", "category": "clean", "expected": "", "request": "Add 15 uL of non-viscous master mix from D1:A1 to D2:A1 and D2:B1 first, then add 5 uL of template from D1:A2 to D2:A1 only. B1 is the no-template control. New tip for every transfer."}
+{"id": "c2", "category": "clean", "expected": "", "request": "Add 20 uL of buffer from D1:A1 to D2:A1 with a new tip."}
+{"id": "c3", "category": "clean", "expected": "", "request": "Add 15 uL of viscous glycerol master mix from D1:A1 to D2:A1 and D2:B1 at 300 uL/s with a 1 second delay after aspirating and a blow-out after dispensing. Then add 5 uL of template from D1:A2 to D2:A1 only. B1 is the no-template control. New tip for every transfer."}
+{"id": "c4", "category": "clean", "expected": "", "request": "Move sealed plate pcr1 from pre-PCR to the thermocycler at slow speed; wells are 50% full."}
+{"id": "c5", "category": "clean", "expected": "", "request": "Move sealed plate pcr1 from the thermocycler to the post-PCR area; wells are 60% full."}
+{"id": "c6", "category": "clean", "expected": "", "request": "Dispense 10 uL of buffer from D1:A1 into D2:A1, D2:B1, and D2:C1 with a new tip for each."}

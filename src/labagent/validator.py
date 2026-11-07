@@ -19,6 +19,9 @@ def validate(p: Protocol) -> list[Violation]:
     v: list[Violation] = []
     mm_first: dict[str, int] = {}
     tmpl_first: dict[str, int] = {}
+    prev_source: str | None = None
+    if not p.steps:
+        v.append(Violation("R9", None, "plan has no steps"))
 
     for i, s in enumerate(p.steps):
         if isinstance(s, Transfer):
@@ -32,8 +35,12 @@ def validate(p: Protocol) -> list[Violation]:
                 or not s.blow_out
             ):
                 v.append(Violation("R2", i, "viscous liquid needs slow rate, delay, and blow-out"))
-            if liq.role == "template" and s.tip == "reuse":
-                v.append(Violation("R3", i, "tip reused across template samples"))
+            if s.tip == "reuse" and (
+                liq.role == "template"
+                or (prev_source is not None and prev_source != s.source)
+            ):
+                v.append(Violation("R3", i, "tip reused across different samples"))
+            prev_source = s.source
             if liq.role == "master_mix":
                 mm_first.setdefault(s.dest, i)
             if liq.role == "template":
