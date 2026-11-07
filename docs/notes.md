@@ -14,3 +14,7 @@ Caveats: one plan, mock faults, oracle written by me, C was not shown the table,
 D: exact 24/36, right outcome 30/36, unsafe 0/3. C replicated identically (21/36, 30/36, unsafe 3/3).
 Remaining gap: pick/tip faults needing 2 retries; C and D both halt after 1 (6/9 outcome).
 Takeaway: the LLM adds value interpreting errors (replan for short aspiration); hard limits and safety stops belong in rules.
+## Q6 tracing findings
+One trace per run (recovery_run) with execute/decide/apply spans; decide spans carry the model's action and reason, so a run can be reconstructed from the trace alone.
+Trace showed why C replanned on contamination: its reason cited the aspiration rate as the likely cause of the splash, so my error wording and the replan option description primed it.
+BUG TO FIX before final Q2 numbers: the retries counter increments on replan, so the model was told "retries: 1" after only a replan.

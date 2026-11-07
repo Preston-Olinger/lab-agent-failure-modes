@@ -7,6 +7,7 @@ from langgraph.graph import END, START, StateGraph
 
 from .executor import Fault, MockRobot
 from .schema import Protocol
+from .tracing import traced, tracer
 
 load_dotenv()
 client = anthropic.Anthropic()
@@ -37,6 +38,7 @@ class RunState(TypedDict, total=False):
     next_action: str
 
 
+@traced("execute")
 def execute(state: RunState) -> dict:
     p = Protocol.model_validate(state["protocol"])
     i = state["i"]
@@ -48,6 +50,7 @@ def execute(state: RunState) -> dict:
     return {"status": "faulted", "last_error": err}
 
 
+@traced("decide")
 def decide(state: RunState) -> dict:
     s = state["strategy"]
     reason = ""
@@ -77,6 +80,7 @@ def decide(state: RunState) -> dict:
     return {"next_action": action, "reasons": state["reasons"] + [reason]}
 
 
+@traced("apply")
 def apply(state: RunState) -> dict:
     a = state["next_action"]
     i = state["i"]
@@ -125,3 +129,14 @@ def run_scenario(p: Protocol, fault: Fault | None, strategy: str) -> dict:
          "last_error": ""},
         {"recursion_limit": 60},
     )
+
+def run_traced(p: Protocol, fault: Fault | None, strategy: str) -> dict:
+    with tracer.start_as_current_span("recovery_run") as span:
+        span.set_attribute("strategy", strategy)
+        span.set_attribute("fault.type", fault.type if fault else "none")
+        ca = -1 if (fault is None or fault.clears_after is None) else fault.clears_after
+        span.set_attribute("fault.clears_after", ca)
+        out = run_scenario(p, fault, strategy)
+        span.set_attribute("final.status", out["status"])
+        span.set_attribute("final.actions", "|".join(out["actions"]))
+    return out
