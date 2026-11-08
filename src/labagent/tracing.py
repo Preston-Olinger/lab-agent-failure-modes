@@ -1,4 +1,5 @@
 import functools
+import os
 
 from opentelemetry import trace
 from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
@@ -8,7 +9,7 @@ from opentelemetry.sdk.trace.export import BatchSpanProcessor
 
 provider = TracerProvider(resource=Resource.create({"service.name": "lab-agent"}))
 provider.add_span_processor(
-    BatchSpanProcessor(OTLPSpanExporter(endpoint="http://localhost:4318/v1/traces"))
+    BatchSpanProcessor(OTLPSpanExporter(endpoint=os.environ.get("OTLP_TRACES_ENDPOINT", "http://localhost:4318/v1/traces")))
 )
 trace.set_tracer_provider(provider)
 tracer = trace.get_tracer("labagent")

@@ -1,0 +1,6 @@
+.env
+.git
+results
+scratch
+__pycache__
+.venv
