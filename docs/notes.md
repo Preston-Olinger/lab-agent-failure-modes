@@ -18,3 +18,6 @@ Takeaway: the LLM adds value interpreting errors (replan for short aspiration); 
 One trace per run (recovery_run) with execute/decide/apply spans; decide spans carry the model's action and reason, so a run can be reconstructed from the trace alone.
 Trace showed why C replanned on contamination: its reason cited the aspiration rate as the likely cause of the splash, so my error wording and the replan option description primed it.
 BUG TO FIX before final Q2 numbers: the retries counter increments on replan, so the model was told "retries: 1" after only a replan.
+## Q2 after retries-counter fix
+C unchanged (21/36 exact, 30/36 outcome, unsafe 3/3). D 23/36 exact (one plate_misplaced run differed), unsafe 0/3.
+The counter bug did not drive the results; contamination finding stands. Priming caveat (error text, replan description) still applies.

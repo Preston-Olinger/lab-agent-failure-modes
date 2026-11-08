@@ -14,7 +14,7 @@ plate_misplaced,,C,1,retry|halt,retry|halt,True,True,False,0,halted
 plate_misplaced,,C,2,retry|halt,retry|halt,True,True,False,0,halted
 plate_misplaced,,D,0,retry|halt,retry|halt,True,True,False,0,halted
 plate_misplaced,,D,1,retry|halt,retry|halt,True,True,False,0,halted
-plate_misplaced,,D,2,retry|halt,retry|halt,True,True,False,0,halted
+plate_misplaced,,D,2,halt,retry|halt,False,True,False,0,halted
 pick_failed,1,A,0,halt,retry,False,False,False,0,halted
 pick_failed,1,B,0,retry,retry,True,True,False,0,completed
 pick_failed,1,C,0,retry,retry,True,True,False,0,completed

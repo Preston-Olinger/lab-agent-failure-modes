@@ -94,7 +94,7 @@ def apply(state: RunState) -> dict:
         return {"actions": acts, "retries": state["retries"] + 1}
     steps = [dict(x) for x in state["protocol"]["steps"]]
     steps[i].update(aspirate_rate_ul_s=300.0, delay_s=1.0, blow_out=True)
-    return {"actions": acts, "retries": state["retries"] + 1,
+    return {"actions": acts,
             "protocol": {**state["protocol"], "steps": steps}}
 
 
