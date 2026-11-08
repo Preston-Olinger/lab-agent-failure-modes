@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: lab-agent-demo
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: agent
+          image: lab-agent:0.1
+          imagePullPolicy: Never
+          envFrom:
+            - secretRef:
+                name: anthropic-key
+          env:
+            - name: OTLP_TRACES_ENDPOINT
+              value: http://host.docker.internal:4318/v1/traces
